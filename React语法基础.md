@@ -193,4 +193,97 @@ this.refs.[refName].value 能获取到输入框里的数据。
     <UserGist source="https://api.github.com/users/octocat/gists" />,
     document.body
     );
+## 10、定义组件的方法
+1> 函数式定义的无状态组件（图形化界面）
+>形式：   
+function HelloComponent(`props`, /* context */) {   
+  return `<div>Hello {props.name}</div>`   
+}   
+ReactDOM.render(`<HelloComponent name="Sebastian" />`, mountNode) 
 
+>特点：   
+a、组件不会被实例化，整体渲染性能得到提升；   
+b、组件不能访问this对象；   
+c、组件无法访问生命周期的方法；   
+d、无状态组件只能访问输入的props，同样的props会得到同样的渲染结果，不会有副作用。   
+所以，只要有可能，尽量使用无状态组件。
+
+例如：
+
+        const person = {
+            name: "michel",
+            age: 31
+        }
+
+        const App = ({ person1 }) => <h1>{ person.name }</h1>
+
+        ReactDOM.render(
+            <App person1={person} />,
+            document.body
+        );
+        
+2> 通过es6的class定义
+
+        class InputControlES6 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    text: props.initialValue || 'placeholder'
+            };
+            // ES6 类中函数必须手动绑定
+            this.handleChange = this.handleChange.bind(this);
+        }
+
+        handleChange(event) {
+            this.setState({
+                text: event.target.value
+            });
+        }
+
+        render() {
+            return (
+                <div>
+                    Type something:
+                    <input onChange={this.handleChange}
+                        value={this.state.text} />
+                </div>
+            );
+        }
+    }
+    InputControlES6.propTypes = {
+        initialValue: React.PropTypes.string
+    };
+    InputControlES6.defaultProps = {
+        initialValue: 'aaa'
+    };
+
+3> 通过es5原生方法*React.createClass*定义
+
+    var InputControlES5 = React.createClass({
+         propTypes: {//定义传入props中的属性各种类型
+            initialValue: React.PropTypes.string
+        },
+        defaultProps: { //组件默认的props对象
+            initialValue: 'aaa'
+        },
+        // 设置 initial state
+        getInitialState: function() {//组件相关的状态对象
+            return {
+                text: this.props.initialValue || 'placeholder'
+            };
+        },
+        handleChange: function(event) {
+            this.setState({ //this represents react component instance
+                text: event.target.value
+            });
+        },
+        render: function() {
+            return (
+                <div>
+                    Type something:
+                    <input onChange={this.handleChange} value={this.state.text} />
+                </div>
+            );
+        }
+    });
+    
