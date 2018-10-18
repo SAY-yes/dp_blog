@@ -1,10 +1,10 @@
 # Express 案例
-    var express    = require('express');
+    var express    = require('express');   // 安装express
     var app        = express();  
 
 生成一个web应用实例
 
-    var bodyParser = require('body-parser');
+    var bodyParser = require('body-parser');   // 安装body-parser
     app.use(bodyParser.urlencoded({ extended: true }));
 
 body-parser模块的作用，是对POST、PUT、DELETE等 HTTP 方法的数据体进行解析。app.use用来将这个模块加载到当前应用。有了这两句，就可以处理POST、PUT、DELETE等请求了。
