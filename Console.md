@@ -4,7 +4,7 @@
     console.warn('警告信息');
     console.error('错误信息');
 打印结果：   
-<img src="../console.png">
+<img src="./imgs/console.png">
 ## 二、分组输出
 使用Console.group()和Console.groupEnd()包裹分组内容。
 
@@ -14,7 +14,7 @@
         console.log("1-3");
     console.groupEnd();
 打印结果：
-<img src="../console2.png">
+<img src="./imgs/console2.png">
 >1、还可以使用Console.groupCollapsed()来代替Console.group()生成折叠的分组。   
 2、Console.group()还可以嵌套使用
 ## 三、表格输出
@@ -41,7 +41,7 @@
     ]
     console.table(Arr);
 打印结果：
-<img src="../console3.png">
+<img src="./imgs/console3.png">
 ## 四、查看对象
 使用Console.dir()显示一个对象的所有属性和方法   
 在Chrome中Console.dir()和Console.log()效果相同
@@ -57,7 +57,7 @@
     console.log("console.log(CodeDeer)");
     console.log(CodeDeer);
 打印结果：
-<img src="../console4.png">
+<img src="./imgs/console4.png">
 ## 五、条件输出
 当第一个参数或返回值为真时，不输出内容   
 当第一个参数或返回值为假时，输出后面的内容并抛出异常
@@ -100,7 +100,7 @@
 
     var x = add2(1, 1);
 打印结果：   
-<img src="../console5.png">
+<img src="./imgs/console5.png">
 ## 八、计时功能
 使用Console.time()和Console.timeEnd()包裹需要计时的代码片段，输出运行这段代码的时间。
 * Console.time()中的参数作为计时器的标识，具有唯一性。 
@@ -147,4 +147,4 @@
 
     console.log('%cRainbow Text ', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
 打印结果：
-<img src="../console6.png">
+<img src="./imgs/console6.png">
