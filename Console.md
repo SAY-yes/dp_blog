@@ -3,7 +3,7 @@
     console.info('提示信息');
     console.warn('警告信息');
     console.error('错误信息');
-打印结果：   
+打印结果：      
 <img src="./imgs/console.png">
 ## 二、分组输出
 使用Console.group()和Console.groupEnd()包裹分组内容。
@@ -13,7 +13,7 @@
         console.log("1-2");
         console.log("1-3");
     console.groupEnd();
-打印结果：
+打印结果：   
 <img src="./imgs/console2.png">
 >1、还可以使用Console.groupCollapsed()来代替Console.group()生成折叠的分组。   
 2、Console.group()还可以嵌套使用
@@ -40,7 +40,7 @@
         ["gg","hh","ii"],
     ]
     console.table(Arr);
-打印结果：
+打印结果：      
 <img src="./imgs/console3.png">
 ## 四、查看对象
 使用Console.dir()显示一个对象的所有属性和方法   
@@ -56,7 +56,7 @@
 
     console.log("console.log(CodeDeer)");
     console.log(CodeDeer);
-打印结果：
+打印结果：      
 <img src="./imgs/console4.png">
 ## 五、条件输出
 当第一个参数或返回值为真时，不输出内容   
@@ -99,7 +99,7 @@
     }
 
     var x = add2(1, 1);
-打印结果：   
+打印结果：            
 <img src="./imgs/console5.png">
 ## 八、计时功能
 使用Console.time()和Console.timeEnd()包裹需要计时的代码片段，输出运行这段代码的时间。
@@ -146,5 +146,5 @@
     console.log("%c3D Text", " text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
 
     console.log('%cRainbow Text ', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
-打印结果：
+打印结果：         
 <img src="./imgs/console6.png">
