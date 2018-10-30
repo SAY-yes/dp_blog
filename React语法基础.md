@@ -222,7 +222,7 @@ d、无状态组件只能访问输入的props，同样的props会得到同样的
             document.body
         );
         
-2> 通过es6的class定义
+2> 通过class类定义的有状态组件
 
         class InputControlES6 extends React.Component {
             constructor(props) {
@@ -256,6 +256,10 @@ d、无状态组件只能访问输入的props，同样的props会得到同样的
     InputControlES6.defaultProps = {
         initialValue: 'aaa'
     };
+>根据组件的职责，还可分为展示型组件和容器型组件：    
+1、展示型组件：展示UI表现。展示型组件一般是无状态组件，不需要state,因为展示型组件不需要管理数据，但当展示型组件需要管理自身UI状态时，例如控制组件内部弹窗的显示与隐藏，是可以使用state的，这是state属于UI state。   
+2、容器型组件的职责是：组件数据如何工作。容器型组件需要知道如何获取子组件所需要的数据，以及处理这些数据的处理逻辑，并把数据和逻辑通过props提供给子组件使用。
+
 
 3> 通过es5原生方法*React.createClass*定义
 
