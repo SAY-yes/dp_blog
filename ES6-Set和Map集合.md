@@ -28,6 +28,8 @@
 
 	let set = new Set([1,2,3,4,5])   // 将数组转换为Set集合
 	let array = [...set]   //将Set集合转换为数组
+	或者：
+	let arr = Array.from(set)   //将Set集合转换为数组
 >可利用Set集合的自动去重功能为数组去重
 4、Weak Set集合
 
