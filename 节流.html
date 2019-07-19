@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		 #container{
+            width: 100%; height: 200vh; line-height: 200px; text-align: center; color: #fff; background-color: #444; font-size: 30px;
+        }
+		button{
+			padding:10px 20px
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+</body>
+<script>
+	function throttle(fn) {
+			let canRun = true; // 声明一个变量当标志位，记录当前代码是否在执行
+			return function () {
+				const args = arguments
+				if (!canRun) return; // 如果代码正在执行，则取消这次方法执行
+				// 如果空闲，则可以正常触发方法执行
+				canRun = false; // 立即设置为false
+				setTimeout(() => { // 将外部传入的函数的执行放在setTimeout中
+					fn.apply(this, args);
+					// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉
+					canRun = true;
+				}, 1000);
+			};
+		}
+		function sayHi(e) {
+			console.log(e);
+		}
+		
+		window.onscroll = throttle(sayHi)
+</script>
+</html>
