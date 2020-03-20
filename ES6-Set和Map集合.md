@@ -24,6 +24,7 @@
 		console.log(origin === set)   // true|true
 	})
 >如果需要在回调中使用this引用，可将它作为第二个参数传入forEach()
+
 3、将Set集合转换为数组
 
 	let set = new Set([1,2,3,4,5])   // 将数组转换为Set集合
@@ -31,6 +32,7 @@
 	或者：
 	let arr = Array.from(set)   //将Set集合转换为数组
 >可利用Set集合的自动去重功能为数组去重
+
 4、Weak Set集合
 
 	let set = new Set(),key={};  // 强引用的Set集合
