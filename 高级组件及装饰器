@@ -1,0 +1,63 @@
+import React, { useState} from 'react';
+import {Button} from 'antd';
+import Dialog from './Dialog';
+import 'antd/dist/antd.css';
+import './App.css';
+
+
+const createHeader = Component => props => {
+  console.log(props, ' <==createHeader');
+  return (
+    <div className="border">
+      <Component {...props} />
+    </div>
+  )
+}
+
+const customHeader = props => {
+  console.log(props, ' <==customHeader');
+  return (
+    <header>customHeader</header>
+  )
+}
+const otherHeader = props => {
+  console.log(props, ' <==otherHeader');
+  return (
+    <h3>otherHeader</h3>
+  )
+}
+
+const MyHeader = createHeader(customHeader)
+const PageHeader = createHeader(otherHeader)
+/**
+ * 装饰器配置：
+ * 1. 只对类组件有效。
+ * 2. 安装库，yarn add @babel/plugin-proposal-decorators
+ * 3. 配置装饰器，在config-overrides.js中
+ * const {addDecoratorsLegacy} = require("customize-cra");
+ * module.exports = override(
+ *  ...,
+ *  addDecoratorsLegacy()
+ * )
+ * 4.如果vscode对装饰器有warning,设置里加上"javascript.implicitProjectConfig.experimentalDecorators":true
+ * 5.重启项目
+ */
+@createHeader
+class ThreeHeader extends React.Component {
+  render() {
+    return <h1>ThreeHeader</h1>
+  }
+}
+
+function App() {
+  const [showDialog,changeShow]  =useState(false)
+  return (
+    <div className="App">
+      <MyHeader title="MyHeader"  />
+      <PageHeader name="PageHeader" />
+      <ThreeHeader label="jack" />
+    </div>
+  );
+}
+
+export default App;
