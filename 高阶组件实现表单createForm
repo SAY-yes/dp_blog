@@ -1,0 +1,126 @@
+import React, { Component} from 'react';
+import { Button, Input} from 'antd';
+// import {createForm} from 'rc-form';
+import 'antd/dist/antd.css';
+import './App.less';
+
+function CustomInput(props) {
+  return (
+    <Input {...props}/>
+  )
+}
+
+const createForm = options => Cmp => {
+  return class extends Component{
+    constructor(props){
+      super(props);
+      this.state = {};
+      this.options = {}
+    }
+    handleChange = e => {
+      const {name,value} = e.target
+      this.setState({[name]:value})
+    }
+    getFieldDecorator = (fieldName,option) => FieldCmp => {
+      this.options[fieldName] = option;
+      return React.cloneElement(FieldCmp,{
+        name: fieldName,
+        value: this.state[fieldName] || option?.initialValue,
+        onChange:this.handleChange
+      })
+
+    }
+    getFieldsValue = () => {
+      return {...this.state}
+    }
+    getFieldValue = (fieldName) => {
+      return this.state[fieldName]
+
+    }
+    setFieldsValue = (fields) => {
+      this.setState(fields)
+    }
+    validateFields = callback => {
+      let err = [];
+      for (const fieldName in this.options) {
+        if (this.state[fieldName]===undefined){
+          err.push({
+            [fieldName]: this.options[fieldName]?.rules[0]?.message
+          })  
+        }
+      }
+      if(err.length===0){
+        callback(null,{...this.state})
+      }else{
+        callback(err, { ...this.state })
+      }
+    }
+    getForm  = () => {
+      return {
+        getFieldDecorator:this.getFieldDecorator,
+        getFieldsValue: this.getFieldsValue,
+        getFieldValue: this.getFieldValue,
+        setFieldsValue: this.setFieldsValue,
+        validateFields: this.validateFields
+      }
+    }
+    render(){
+      const form = this.getForm()
+      return (
+        <Cmp {...this.props} form={form} />
+      )
+    }
+  }
+}
+
+@createForm()
+class App extends Component {
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+    const { setFieldsValue} = this.props.form;
+    setFieldsValue({password:'123'})
+  }
+  onNameChange = e => {
+    this.setState({username:e.target.value})
+  }
+  onPwdChange = e => {
+    this.setState({ password: e.target.value })
+  }
+  submit = () => {
+    const { getFieldsValue, validateFields } = this.props.form
+    console.log(getFieldsValue(), ' <==getFiledsValue');
+    validateFields((err,vals) => {
+      if(err){
+        console.log(err, ' <==err');
+      }else{
+        console.log(vals, ' <==vals');
+      }
+    })
+  }
+  render() {
+    const { getFieldDecorator} = this.props.form;
+    /**
+     * 缺点：局部变化引起整体刷新
+     * antd3 是基于rc-form实现的，antd4改善了这个问题
+     */
+    console.log(this.props, ' <==this.props');
+    return (
+      <div className="app">
+        <h3>高阶表单</h3>
+        {getFieldDecorator('username',{
+          // initialValue:'aaa',
+          rules: [{ require: true, message:'username is required!'}]
+        })(<CustomInput placeholder="请输入用户名" />)}
+        {getFieldDecorator('password',{
+          rules: [{ require: true, message: 'password is required!'}]
+        })(<CustomInput placeholder= "请输入密码" />)}
+        <Button onClick={this.submit}>submit</Button>
+      </div>
+    )
+  }
+}
+
+
+export default App;
